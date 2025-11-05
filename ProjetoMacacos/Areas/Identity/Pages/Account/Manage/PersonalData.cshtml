@@ -1,0 +1,118 @@
+﻿@page
+
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Dados Pessoais";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<div class="personaldata-container">
+    <h3>@ViewData["Title"]</h3>
+
+    <p>Veja abaixo os dados cadastrados na sua conta:</p>
+
+   @*  <div class="dados-usuario">
+        <p><strong>Nome:</strong> @Model.Nome</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>CPF:</strong> @Model.CPF</p>
+        <p><strong>Data de Nascimento:</strong> @Model.DataNascimento?.ToString("dd/MM/yyyy")</p>
+        <p><strong>CNH:</strong> @Model.CNH</p>
+    </div> *@
+
+    <div class="alerta alerta-vermelho">
+        ⚠️ <strong>A exclusão desses dados removerá sua conta permanentemente e não poderá ser desfeita.</strong>
+    </div>
+
+    <form id="download-data" asp-page="DownloadPersonalData" method="post">
+        <button class="btn-amarelo" type="submit">Baixar Meus Dados</button>
+    </form>
+
+    <a asp-page="DeletePersonalData" class="btn-vermelho">Excluir Minha Conta</a>
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="btn-preto">← Voltar à Página Inicial</a>
+</div>
+
+<style>
+    body {
+        background-color: #000;
+        color: #FFD700;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .personaldata-container {
+        background-color: #111;
+        max-width: 700px;
+        margin: auto;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        border: 1px solid #FFD700;
+    }
+
+    .dados-usuario {
+        text-align: left;
+        background-color: #000;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #FFD700;
+        margin-bottom: 20px;
+    }
+
+        .dados-usuario p {
+            font-size: 1.1rem;
+            color: #fff;
+            margin: 8px 0;
+        }
+
+        .dados-usuario strong {
+            color: #FFD700;
+        }
+
+    .alerta-vermelho {
+        background-color: #330000;
+        border: 1px solid #ff4d4d;
+        color: #ff4d4d;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: left;
+        margin: 20px 0;
+    }
+
+    .btn-amarelo, .btn-preto, .btn-vermelho {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 1rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .btn-amarelo {
+        background-color: #FFD700;
+        color: #000;
+    }
+
+    .btn-vermelho {
+        background-color: #ff4d4d;
+        color: #000;
+    }
+
+    .btn-preto {
+        background-color: #000;
+        color: #FFD700;
+        border: 1px solid #FFD700;
+    }
+
+        .btn-amarelo:hover, .btn-vermelho:hover, .btn-preto:hover {
+            transform: scale(1.05);
+        }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

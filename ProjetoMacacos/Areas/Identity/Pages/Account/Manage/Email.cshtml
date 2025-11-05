@@ -1,0 +1,174 @@
+﻿@page
+@model EmailModel
+@{
+    ViewData["Title"] = "Gerenciar E-mail";
+    ViewData["ActivePage"] = ManageNavPages.Email;
+}
+
+<div class="email-container">
+    <h3>@ViewData["Title"]</h3>
+
+    <partial name="_StatusMessage" for="StatusMessage" />
+
+    <form id="email-form" method="post">
+        <div asp-validation-summary="All" class="erro" role="alert"></div>
+
+        @if (Model.IsEmailConfirmed)
+        {
+            <div class="campo">
+                <label asp-for="Email" class="form-label">E-mail atual</label>
+                <div class="input-group">
+                    <input asp-for="Email" class="form-control" disabled />
+                    <span class="input-group-text text-success fw-bold">✓ Confirmado</span>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="campo">
+                <label asp-for="Email" class="form-label">E-mail atual</label>
+                <input asp-for="Email" class="form-control" disabled />
+                <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn-preto w-100 mt-2">Enviar e-mail de verificação</button>
+            </div>
+        }
+
+        <div class="campo">
+            <label asp-for="Input.NewEmail" class="form-label">Novo e-mail</label>
+            <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" placeholder="Digite o novo e-mail" />
+            <span asp-validation-for="Input.NewEmail" class="erro"></span>
+        </div>
+
+        <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="btn-amarelo w-100">Alterar E-mail</button>
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn-preto w-100">← Voltar à Página Inicial</a>
+    </form>
+</div>
+
+<style>
+    /* ======= ESTILO GERAL ======= */
+    body {
+        background-color: #000;
+        color: #FFD700;
+        font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .email-container {
+        background-color: #111;
+        max-width: 600px;
+        margin: auto;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        border: 1px solid #FFD700;
+    }
+
+    h3 {
+        color: #FFD700;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 30px;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    /* ======= CAMPOS ======= */
+    .campo {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        color: #FFD700;
+        font-weight: 500;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #FFD700;
+        background-color: #000;
+        color: #FFD700;
+        font-size: 1rem;
+        transition: all 0.3s;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #e6c200;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+        }
+
+    .input-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .input-group-text {
+        background-color: transparent;
+        border: none;
+        color: #00ff99;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    /* ======= ERROS E ALERTAS ======= */
+    .erro {
+        color: #ff4d4d;
+        font-size: 0.9rem;
+        text-align: left;
+        margin-top: 5px;
+    }
+
+    /* ======= BOTÕES ======= */
+    .btn-amarelo, .btn-preto {
+        display: inline-block;
+        padding: 12px 20px;
+        margin: 10px 0;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 1rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .btn-amarelo {
+        background-color: #FFD700;
+        color: #000;
+        border: none;
+    }
+
+        .btn-amarelo:hover {
+            background-color: #e6c200;
+            transform: scale(1.05);
+        }
+
+    .btn-preto {
+        background-color: #000;
+        color: #FFD700;
+        border: 1px solid #FFD700;
+    }
+
+        .btn-preto:hover {
+            background-color: #1a1a1a;
+            transform: scale(1.05);
+        }
+
+    {
+        padding: 25px;
+        margin: 20px;
+    }
+
+    h3 {
+        font-size: 1.7rem;
+    }
+
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

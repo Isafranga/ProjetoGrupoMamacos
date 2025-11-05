@@ -1,0 +1,128 @@
+﻿@page
+@model DeletePersonalDataModel
+@{
+    ViewData["Title"] = "Excluir Dados Pessoais";
+    ViewData["ActivePage"] = ManageNavPages.DeleteProfile;
+}
+
+<div class="delete-container">
+    <h3>@ViewData["Title"]</h3>
+
+    <div class="alerta-perigo">
+        <p><strong>A exclusão dos dados irá remover sua conta permanentemente e não poderá ser recuperada.</strong></p>
+    </div>
+
+    <form id="delete-user" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+        @if (Model.RequirePassword)
+        {
+            <div class="campo mb-3">
+                <label asp-for="Input.Password" class="form-label">Senha</label>
+                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" placeholder="Digite sua senha" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+        }
+
+        <button class="btn-vermelho w-100" type="submit">Excluir dados e encerrar minha conta</button>
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn-preto w-100 mt-2">← Voltar</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    body {
+        background-color: #000;
+        color: #FFD700;
+        font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+        text-align: center;
+    }
+
+    .delete-container {
+        background-color: #111;
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 35px;
+        border-radius: 20px;
+        border: 1px solid #FFD700;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        text-align: left;
+    }
+
+    h3 {
+        color: #FFD700;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .alerta-perigo {
+        background-color: #330000;
+        color: #ff6666;
+        border: 1px solid #ff4d4d;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-control {
+        background-color: #000;
+        color: #FFD700;
+        border: 1px solid #FFD700;
+        border-radius: 10px;
+        padding: 12px;
+        transition: 0.3s;
+    }
+
+        .form-control:focus {
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+            border-color: #e6c200;
+            outline: none;
+        }
+
+    .form-label {
+        color: #FFD700;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .btn-vermelho {
+        background-color: #ff4d4d;
+        color: #fff;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+        .btn-vermelho:hover {
+            background-color: #e60000;
+            transform: scale(1.03);
+        }
+
+    .btn-preto {
+        background-color: transparent;
+        color: #FFD700;
+        border: 1px solid #FFD700;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: bold;
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+        .btn-preto:hover {
+            background-color: #1a1a1a;
+            transform: scale(1.03);
+        }
+</style>

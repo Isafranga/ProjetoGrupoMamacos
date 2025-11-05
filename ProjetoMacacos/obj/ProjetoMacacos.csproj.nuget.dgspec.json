@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Isadora Oliveira\\Desktop\\backend\\MVC\\Atividade_cafe\\ProjetoMacacos\\ProjetoMacacos\\ProjetoMacacos.csproj": {}
+    "C:\\Users\\Isadora Oliveira\\Desktop\\ProjetoGrupoMamacos\\ProjetoMacacos\\ProjetoMacacos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Isadora Oliveira\\Desktop\\backend\\MVC\\Atividade_cafe\\ProjetoMacacos\\ProjetoMacacos\\ProjetoMacacos.csproj": {
+    "C:\\Users\\Isadora Oliveira\\Desktop\\ProjetoGrupoMamacos\\ProjetoMacacos\\ProjetoMacacos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Isadora Oliveira\\Desktop\\backend\\MVC\\Atividade_cafe\\ProjetoMacacos\\ProjetoMacacos\\ProjetoMacacos.csproj",
+        "projectUniqueName": "C:\\Users\\Isadora Oliveira\\Desktop\\ProjetoGrupoMamacos\\ProjetoMacacos\\ProjetoMacacos.csproj",
         "projectName": "ProjetoMacacos",
-        "projectPath": "C:\\Users\\Isadora Oliveira\\Desktop\\backend\\MVC\\Atividade_cafe\\ProjetoMacacos\\ProjetoMacacos\\ProjetoMacacos.csproj",
+        "projectPath": "C:\\Users\\Isadora Oliveira\\Desktop\\ProjetoGrupoMamacos\\ProjetoMacacos\\ProjetoMacacos.csproj",
         "packagesPath": "C:\\Users\\Isadora Oliveira\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Isadora Oliveira\\Desktop\\backend\\MVC\\Atividade_cafe\\ProjetoMacacos\\ProjetoMacacos\\obj\\",
+        "outputPath": "C:\\Users\\Isadora Oliveira\\Desktop\\ProjetoGrupoMamacos\\ProjetoMacacos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -67,9 +67,17 @@
               "target": "Package",
               "version": "[8.0.15, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[8.0.15, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.7, )"
             }
           },
           "imports": [

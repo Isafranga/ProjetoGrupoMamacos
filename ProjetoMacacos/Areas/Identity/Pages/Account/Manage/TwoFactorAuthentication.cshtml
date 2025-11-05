@@ -1,0 +1,183 @@
+﻿@page
+@using Microsoft.AspNetCore.Http.Features
+@model TwoFactorAuthenticationModel
+@{
+    ViewData["Title"] = "Autenticação de dois fatores ";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<div class="twofactor-container">
+    <partial name="_StatusMessage" for="StatusMessage" />
+    <h3>@ViewData["Title"]</h3>
+
+    @{
+        var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
+        if (consentFeature?.CanTrack ?? true)
+        {
+            if (Model.Is2faEnabled)
+            {
+                if (Model.RecoveryCodesLeft == 0)
+                {
+                    <div class="alerta alerta-vermelho">
+                        <strong>⚠ Você não possui mais códigos de recuperação.</strong>
+                        <p>Você deve <a asp-page="./GenerateRecoveryCodes">gerar um novo conjunto de códigos de recuperação</a> antes de poder entrar usando um código de recuperação.</p>
+                    </div>
+                }
+                else if (Model.RecoveryCodesLeft == 1)
+                {
+                    <div class="alerta alerta-vermelho">
+                        <strong>⚠ Você possui apenas 1 código de recuperação restante.</strong>
+                        <p>Recomenda-se <a asp-page="./GenerateRecoveryCodes">gerar um novo conjunto de códigos de recuperação</a>.</p>
+                    </div>
+                }
+                else if (Model.RecoveryCodesLeft <= 3)
+                {
+                    <div class="alerta alerta-amarela">
+                        <strong>⚠ Você possui @Model.RecoveryCodesLeft códigos de recuperação restantes.</strong>
+                        <p>Considere <a asp-page="./GenerateRecoveryCodes">gerar um novo conjunto de códigos</a> para segurança adicional.</p>
+                    </div>
+                }
+
+                if (Model.IsMachineRemembered)
+                {
+                    <form method="post" style="display:inline-block">
+                        <button type="submit" class="btn-preto">Esquecer este navegador</button>
+                    </form>
+                }
+
+                <a asp-page="./Disable2fa" class="btn-vermelho">Desativar 2FA</a>
+                <a asp-page="./GenerateRecoveryCodes" class="btn-amarelo">Redefinir códigos de recuperação</a>
+            }
+
+            <h4>Aplicativo autenticador</h4>
+
+            @if (!Model.HasAuthenticator)
+            {
+                <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn-amarelo">Adicionar aplicativo autenticador</a>
+            }
+            else
+            {
+                <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn-amarelo">Configurar aplicativo autenticador</a>
+                <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn-preto">Redefinir aplicativo autenticador</a>
+            }
+        }
+        else
+        {
+            <div class="alerta alerta-vermelho">
+                <strong>⚠ Política de privacidade e cookies não foi aceita.</strong>
+                <p>Você deve aceitar a política antes de habilitar a autenticação em duas etapas.</p>
+            </div>
+        }
+    }
+</div>
+
+    <style>
+        body {
+            background-color: #000;
+            color: #FFD700;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .twofactor-container {
+            background-color: #111;
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        h3 {
+            color: #FFD700;
+            font-size: 1.9rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        h4 {
+            color: #FFD700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .alerta {
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .alerta-vermelho {
+            background-color: #330000;
+            border: 1px solid #ff4d4d;
+            color: #ff4d4d;
+        }
+
+        .alerta-amarela {
+            background-color: #332b00;
+            border: 1px solid #FFD700;
+            color: #FFD700;
+        }
+
+        a {
+            color: #FFD700;
+            text-decoration: underline;
+            transition: 0.3s;
+        }
+
+            a:hover {
+                color: #e6c200;
+            }
+
+        .btn-amarelo, .btn-preto, .btn-vermelho {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .btn-amarelo {
+            background-color: #FFD700;
+            color: #000;
+            border: none;
+        }
+
+            .btn-amarelo:hover {
+                background-color: #e6c200;
+                transform: scale(1.05);
+            }
+
+        .btn-preto {
+            background-color: #000;
+            color: #FFD700;
+            border: 1px solid #FFD700;
+        }
+
+            .btn-preto:hover {
+                background-color: #1a1a1a;
+                transform: scale(1.05);
+            }
+
+        .btn-vermelho {
+            background-color: #ff4d4d;
+            color: #000;
+            border: none;
+        }
+
+            .btn-vermelho:hover {
+                background-color: #ff6666;
+                transform: scale(1.05);
+            }
+    </style>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

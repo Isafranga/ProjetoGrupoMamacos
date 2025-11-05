@@ -1,0 +1,217 @@
+﻿@model ProjetoMacacos.Models.Registros
+
+@{
+    ViewData["Title"] = "Detalhes da Locação";
+}
+
+<section class="details-section">
+    <div class="details-container">
+
+        <!-- Informações -->
+        <div class="car-info">
+            @* <h1>Locação - @Model.Veiculo.Marca @Model.Veiculo.Modelo</h1>
+            <p class="car-desc">
+                Confira todos os detalhes da locação deste veículo de luxo.
+                Perfeito para quem busca conforto, estilo e performance.
+            </p> *@
+
+            <hr />
+
+            <ul class="car-details">
+                <li><strong>Cliente:</strong> @Model.Nome</li>
+            </ul>
+
+            <h3 class="section-subtitle">Informações do Veículo</h3>
+            <ul class="car-details">
+                <li><strong>Marca:</strong> @Model.Veiculo.Marca</li>
+                <li><strong>Modelo:</strong> @Model.Veiculo.Modelo</li>
+                <li><strong>Ano:</strong> @Model.Veiculo.Ano</li>
+                <li><strong>Cor:</strong> @Model.Veiculo.Cor</li>
+                <li><strong>Placa:</strong> @Model.Veiculo.Placa</li>
+            </ul>
+
+            <h3 class="section-subtitle">Informações da Locação</h3>
+            <ul class="car-details">
+                <li><strong>Data de Retirada:</strong> @Model.DataRetirada.ToString("dd/MM/yyyy")</li>
+                <li><strong>Data de Devolução:</strong> @Model.DataDevolucao.ToString("dd/MM/yyyy")</li>
+                <li><strong>Preço do Aluguel:</strong> <span class="price">R$ 350,00 / dia</span></li>
+            </ul>
+
+            <div class="btn-group">
+                <a asp-action="Edit" asp-route-id="@Model?.RegistroId" class="btn-hero">Editar</a>
+                <a asp-action="Index" class="btn-secondary">Voltar</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ======== GERAL ======== */
+    body {
+        background-color: #000;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+    }
+
+    /* ======== SEÇÃO PRINCIPAL ======== */
+    .details-section {
+        padding: 60px 10%;
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .details-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        max-width: 1100px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+        padding: 40px;
+    }
+
+    /* ======== IMAGEM ======== */
+    .car-image {
+        flex: 1 1 45%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .car-image img {
+            width: 100%;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            max-height: 75vh; /* evita que invada o rodapé */
+        }
+
+    /* ======== INFORMAÇÕES ======== */
+    .car-info {
+        flex: 1 1 45%;
+    }
+
+        .car-info h1 {
+            font-size: 2.2rem;
+            color: #FFD700;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+    .car-desc {
+        font-size: 1.1rem;
+        color: #ccc;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    .section-subtitle {
+        color: #FFD700;
+        margin-top: 25px;
+        font-size: 1.2rem;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        padding-bottom: 5px;
+    }
+
+    .car-details {
+        list-style: none;
+        padding: 0;
+        margin: 15px 0;
+        font-size: 1rem;
+    }
+
+        .car-details li {
+            margin-bottom: 10px;
+            color: #eee;
+        }
+
+        .car-details strong {
+            color: #FFD700;
+        }
+
+    .price {
+        color: #32CD32;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+
+    /* ======== BOTÕES ======== */
+    .btn-group {
+        margin-top: 30px;
+        display: flex;
+        gap: 15px;
+    }
+
+    .btn-hero {
+        background: #FFD700;
+        color: #000;
+        padding: 12px 35px;
+        border-radius: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        transition: 0.3s ease-in-out;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        text-align:center;
+    }
+
+        .btn-hero:hover {
+            background: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+    .btn-secondary {
+        background: transparent;
+        border: 1px solid #FFD700;
+        color: #FFD700;
+        padding: 12px 30px;
+        border-radius: 30px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.3s ease;
+        text-align: center;
+    }
+
+        .btn-secondary:hover {
+            background: #FFD700;
+            color: #000;
+        }
+
+ 
+
+    {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .car-info h1 {
+        font-size: 1.8rem;
+    }
+
+    .car-image img {
+        max-width: 90%;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-hero, .btn-secondary {
+        width: 80%;
+    }
+
+    }
+</style>

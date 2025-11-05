@@ -1,0 +1,109 @@
+﻿@page
+@model ResendEmailConfirmationModel
+@{
+    ViewData["Title"] = "Reenviar confirmação de e-mail";
+}
+
+<div class="resend-container">
+    <h1>@ViewData["Title"]</h1>
+    <h2>Informe seu e-mail para reenviar o link de confirmação.</h2>
+    <hr />
+
+    <div class="form-box">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="nome@exemplo.com" />
+                <label asp-for="Input.Email" class="form-label">E-mail</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Reenviar</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #000; /* Fundo preto */
+        color: #FFD700; /* Texto amarelo dourado */
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        margin-top: 80px;
+    }
+
+    h1, h2 {
+        color: #FFD700;
+    }
+
+    h2 {
+        font-weight: 400;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border-color: #FFD700;
+        width: 60%;
+        margin: 20px auto;
+    }
+
+    .resend-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-box {
+        background-color: #111;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        width: 400px;
+    }
+
+    .form-floating label {
+        color: #FFD700;
+    }
+
+    .form-control {
+        background-color: #222;
+        color: #FFD700;
+        border: 1px solid #FFD700;
+    }
+
+        .form-control::placeholder {
+            color: #aaa;
+        }
+
+        .form-control:focus {
+            background-color: #333;
+            border-color: #FFD700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            color: #FFD700;
+        }
+
+    .btn-primary {
+        background-color: #FFD700;
+        color: #000;
+        border: none;
+        transition: 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #e6c200;
+            transform: scale(1.03);
+            color: #000;
+        }
+
+    .text-danger {
+        color: #ff4d4d !important;
+        margin-top: 5px;
+        font-size: 0.9rem;
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

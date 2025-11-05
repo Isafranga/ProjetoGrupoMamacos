@@ -1,0 +1,152 @@
+﻿@model ProjetoMacacos.Models.Veiculo
+
+@{
+    ViewData["Title"] = "Excluir Veículo";
+}
+
+<section class="delete-section">
+    <div class="delete-container">
+        <h1 class="delete-title">Excluir Veículo</h1>
+        <p class="delete-warning">Tem certeza que deseja excluir este veículo do sistema?</p>
+
+        <div class="delete-card">
+            <div class="delete-info">
+                <ul>
+                    <li><strong>Placa:</strong> @Model.UrlFoto</li>
+                    <li><strong>Placa:</strong> @Model.Placa</li>
+                    <li><strong>Modelo:</strong> @Model.Modelo</li>
+                    <li><strong>Marca:</strong> @Model.Marca</li>
+                    <li><strong>Ano:</strong> @Model.Ano</li>
+                    <li><strong>Cor:</strong> @Model.Cor</li>
+                </ul>
+            </div>
+        </div>
+
+        <form asp-action="Delete" class="delete-form">
+            <input type="hidden" asp-for="VeiculoId" />
+
+            <button type="submit" class="btn-delete">Excluir</button>
+            <a asp-action="Index" class="btn-cancelar">Cancelar</a>
+        </form>
+    </div>
+</section>
+
+<style>
+    /* ======== SEÇÃO PRINCIPAL ======== */
+    .delete-section {
+        background-color: #000;
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 20px;
+    }
+
+    .delete-container {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        border-radius: 20px;
+        padding: 40px;
+        width: 100%;
+        max-width: 700px;
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+        text-align: center;
+    }
+
+    .delete-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #FFD700;
+        margin-bottom: 15px;
+    }
+
+    .delete-warning {
+        color: #ddd;
+        font-size: 1.1rem;
+        margin-bottom: 35px;
+    }
+
+    /* ======== CARD DE INFORMAÇÕES ======== */
+    .delete-card {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 40px;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+    }
+
+    .delete-info ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+        font-size: 1rem;
+    }
+
+    .delete-info li {
+        margin-bottom: 10px;
+        color: #ddd;
+    }
+
+    .delete-info strong {
+        color: #FFD700;
+    }
+
+    /* ======== BOTÕES ======== */
+    .delete-form {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .btn-delete {
+        background: #c82333;
+        color: #fff;
+        border: none;
+        padding: 12px 35px;
+        border-radius: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    }
+
+        .btn-delete:hover {
+            background: #dc3545;
+            transform: scale(1.05);
+        }
+
+    .btn-cancelar {
+        background: transparent;
+        border: 1px solid #FFD700;
+        color: #FFD700;
+        padding: 12px 35px;
+        border-radius: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: 0.3s ease;
+    }
+
+        .btn-cancelar:hover {
+            background: #FFD700;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+
+    {
+        padding: 25px;
+    }
+
+    .btn-delete,
+    .btn-cancelar {
+        width: 100%;
+        text-align: center;
+    }
+
+    }
+</style>

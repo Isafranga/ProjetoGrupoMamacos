@@ -1,0 +1,283 @@
+﻿@model ProjetoMacacos.Models.Veiculo
+
+@{
+    ViewData["Title"] = "Cadastro de Veiculos";
+    var fotoUrl = !string.IsNullOrEmpty(Model.UrlFoto)
+        ? Url.Action("BuscarFoto", "Veiculoes1", new { id = Model.VeiculoId })
+        : Url.Content("~/img/sem-imagem.jpg");
+}
+
+<section class="rent-section">
+    <div class="rent-container">
+        <div class="rent-header">
+            <h1>Reserve seu <span class="highlight"> @Model.Modelo</span></h1>
+            <p>Preencha os dados abaixo para confirmar o aluguel do veículo.</p>
+        </div>
+
+        <div class="rent-content">
+            <!-- ======== RESUMO DO CARRO ======== -->
+            <div class="car-summary">
+                <div class="col-3 text-center gap-3 mt-4">
+                    <img id="fotoPreview" src="@fotoUrl" class="img-thumbnail img-fluid mb-2" style="max-height: 150px;" />
+                    <form asp-action="Edit" asp-controller="Usuarios" method="post" enctype="multipart/form-data" id="formAlterarFoto">
+                        <input type="hidden" name="id" value="@Model.VeiculoId" />
+                        <input type="file" asp-for="UrlFoto" id="novaFotoInput" class="d-none" accept="image/*" />
+                        <button type="button" class="btn btn-sm text-light w-100 mt-3" id="btnAlterarFoto"><i class="bi bi-camera"></i> Alterar Foto</button>
+                    </form>
+                </div>
+                <ul>
+                    <li><strong>Marca:</strong> @Model.Marca</li>
+                    <li><strong>Modelo:</strong> @Model.Modelo</li>
+                    <li><strong>Ano:</strong> @Model.Ano</li>
+                    <li><strong>Cor:</strong> @Model.Cor</li>
+                    <li><strong>Placa:</strong> @Model.Placa</li>
+                </ul>
+
+                <div class="price-box">
+                    <p class="price-label">Valor do Aluguel</p>
+                    <p class="price-value">R$ 350,00<span>/dia</span></p>
+                </div>
+            </div>
+
+            <!-- ======== FORMULÁRIO ======== -->
+            <div class="form-container">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="VeiculoId" />
+
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" class="form-control" placeholder="Digite seu nome" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" class="form-control" placeholder="Digite seu CPF" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data de Retirada</label>
+                        <input type="date" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data de Devolução</label>
+                        <input type="date" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Local de Retirada</label>
+                        <input type="text" class="form-control" placeholder="Ex: Aeroporto, Centro, etc." required />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn-hero">Confirmar Aluguel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a asp-action="Index" class="btn-secondary">Voltar à Lista</a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ======== SEÇÃO DE ALUGUEL ======== */
+    .rent-section {
+        background-color: #000;
+        color: #fff;
+        padding: 60px 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .rent-container {
+        width: 100%;
+        max-width: 1100px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+    }
+
+    .rent-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+        .rent-header h1 {
+            color: #FFD700;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+
+        .rent-header .highlight {
+            color: #fff;
+        }
+
+        .rent-header p {
+            color: #ccc;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+    /* ======== CONTEÚDO PRINCIPAL ======== */
+    .rent-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: space-between;
+    }
+
+    /* ======== RESUMO DO CARRO ======== */
+    .car-summary {
+        flex: 1 1 40%;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+    }
+
+        .car-summary img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .car-summary ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .car-summary li {
+            margin-bottom: 10px;
+            color: #ddd;
+        }
+
+        .car-summary strong {
+            color: #FFD700;
+        }
+
+    /* ======== PREÇO ======== */
+    .price-box {
+        background: rgba(255, 215, 0, 0.1);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        border-radius: 15px;
+        padding: 15px;
+        text-align: center;
+        margin-top: 10px;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+    }
+
+    .price-label {
+        color: #ccc;
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+    }
+
+    .price-value {
+        color: #FFD700;
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 0;
+    }
+
+        .price-value span {
+            color: #aaa;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+    /* ======== FORMULÁRIO ======== */
+    .form-container {
+        flex: 1 1 55%;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            display: block;
+            color: #FFD700;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 10px 15px;
+        border-radius: 8px;
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 1rem;
+    }
+
+        .form-control::placeholder {
+            color: #999;
+        }
+
+    .btn-hero {
+        background: #FFD700;
+        color: #000;
+        padding: 12px 35px;
+        border-radius: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+
+        .btn-hero:hover {
+            background: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+    .btn-secondary {
+        display: inline-block;
+        margin-top: 20px;
+        border: 1px solid #FFD700;
+        color: #FFD700;
+        padding: 10px 25px;
+        border-radius: 25px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+        .btn-secondary:hover {
+            background: #FFD700;
+            color: #000;
+        }
+
+ 
+
+    {
+        flex-direction: column;
+    }
+
+    .car-summary img {
+        max-width: 90%;
+    }
+
+    .btn-hero {
+        width: 100%;
+        text-align: center;
+    }
+
+    }
+</style>

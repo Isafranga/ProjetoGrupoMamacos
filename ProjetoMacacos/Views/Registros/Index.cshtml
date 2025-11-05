@@ -1,0 +1,209 @@
+﻿@model IEnumerable<ProjetoMacacos.Models.Registros>
+
+@{
+    ViewData["Title"] = "Registro de Locações";
+}
+
+<section class="registros-section">
+    <h1 class="page-title">Registro de Locações</h1>
+    <p class="subtitle">
+        Aqui você pode gerenciar todas as locações realizadas na <strong>HEINCAR</strong>.<br>
+        Associe um <span class="gold">cliente</span> a um <span class="gold">veículo</span>, definindo a <span class="gold">data de retirada</span> e a <span class="gold">data prevista de devolução</span>.
+    </p>
+
+    <div class="table-container">
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th>Veículo</th>
+                    <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                    <th>Data de Retirada</th>
+                    <th>Data de Devolução</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.Veiculo.UrlFoto))
+                            {
+                                <img src="@Url.Action("BuscarFoto", "Registros", new { id = item.VeiculoId })"
+                                     class="img-thumbnail"
+                                     style="width: 100px; height: 75px; object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <img src="~/img/sem-imagem.jpg" alt="Sem Capa" class="img-thumbnail" style="width: 50px; height: 75px; object-fit: cover;" />
+                            }
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.Veiculo.Modelo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DataRetirada)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DataDevolucao)</td>
+                        <td class="acoes">
+                            <a asp-action="Edit" asp-route-id="@item.RegistroId" class="btn-small editar">Editar</a>
+                            <a asp-action="Details" asp-route-id="@item.RegistroId" class="btn-small detalhes">Detalhes</a>
+                            <a asp-action="Delete" asp-route-id="@item.RegistroId" class="btn-small excluir">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<style>
+    /* ======== GERAL ======== */
+    body {
+        background-color: #000;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .gold {
+        color: #FFD700;
+        font-weight: 600;
+    }
+
+    .registros-section {
+        padding: 60px 10%;
+    }
+
+    .page-title {
+        color: #FFD700;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 2.4rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #ccc;
+        margin-top: 10px;
+        font-size: 1rem;
+        margin-bottom: 35px;
+    }
+
+    /* ======== BOTÃO NOVO ======== */
+    .btn-container {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .btn-new {
+        display: inline-block;
+        background: #FFD700;
+        color: #000;
+        font-weight: 700;
+        padding: 12px 30px;
+        border-radius: 30px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+        .btn-new:hover {
+            background: #ffcc00;
+            transform: scale(1.05);
+        }
+
+    /* ======== TABELA ======== */
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .table-custom {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+        .table-custom th,
+        .table-custom td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .table-custom th {
+            background-color: rgba(255, 215, 0, 0.15);
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .table-custom td {
+            color: #fff;
+            font-size: 0.95rem;
+        }
+
+        .table-custom tr:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+
+    /* ======== BOTÕES PEQUENOS ======== */
+    .btn-small {
+        display: inline-block;
+        margin: 2px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: 0.3s;
+    }
+
+        .btn-small.editar {
+            background: #FFD700;
+            color: #000;
+        }
+
+            .btn-small.editar:hover {
+                background: #fff;
+            }
+
+        .btn-small.detalhes {
+            background: transparent;
+            border: 1px solid #FFD700;
+            color: #FFD700;
+        }
+
+            .btn-small.detalhes:hover {
+                background: #FFD700;
+                color: #000;
+            }
+
+        .btn-small.excluir {
+            background: #c82333;
+            color: #fff;
+        }
+
+            .btn-small.excluir:hover {
+                background: #dc3545;
+            }
+
+   
+
+    {
+        font-size: 1.8rem;
+    }
+
+    .table-custom th,
+    .table-custom td {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+
+    .btn-new {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    }
+</style>

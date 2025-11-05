@@ -1,0 +1,118 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Perfil";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<div class="profile-container">
+    <h3>@ViewData["Title"]</h3>
+    <partial name="_StatusMessage" for="StatusMessage" />
+
+    <div class="form-box">
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert">
+
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Username" class="form-control" placeholder="Digite seu nome de usuário" disabled />
+                <label asp-for="Username" class="form-label">Nome de Usuário</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Digite seu número de telefone" />
+                <label asp-for="Input.PhoneNumber" class="form-label">Número de Telefone</label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Salvar Alterações</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #000; /* Fundo preto */
+        color: #FFD700; /* Texto amarelo dourado */
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    h3 {
+        color: #FFD700;
+        font-weight: 600;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .profile-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-box {
+        background-color: #111;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        width: 450px;
+        text-align: left;
+    }
+
+    .form-floating label {
+        color: #FFD700;
+    }
+
+    .form-control {
+        background-color: #222;
+        color: #FFD700;
+        border: 1px solid #FFD700;
+    }
+
+        .form-control:disabled {
+            background-color: #333;
+            color: #aaa;
+        }
+
+        .form-control::placeholder {
+            color: #aaa;
+        }
+
+        .form-control:focus {
+            background-color: #333;
+            border-color: #FFD700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            color: #FFD700;
+        }
+
+    .btn-primary {
+        background-color: #FFD700;
+        color: #000;
+        border: none;
+        transition: 0.3s;
+        font-weight: bold;
+    }
+
+        .btn-primary:hover {
+            background-color: #e6c200;
+            transform: scale(1.03);
+            color: #000;
+        }
+
+    .text-danger {
+        color: #ff4d4d !important;
+        margin-top: 5px;
+        font-size: 0.9rem;
+    }
+
+    hr {
+        border-color: #FFD700;
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

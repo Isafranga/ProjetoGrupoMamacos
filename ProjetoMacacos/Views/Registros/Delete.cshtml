@@ -1,0 +1,177 @@
+﻿@model ProjetoMacacos.Models.Registros
+
+@{
+    ViewData["Title"] = "Excluir Registro de Locação";
+}
+
+<section class="delete-section">
+    <h1 class="page-title">Excluir Registro de Locação</h1>
+    <p class="subtitle">Tem certeza de que deseja excluir esta <span class="gold">locação</span>? Essa ação não poderá ser desfeita.</p>
+
+    <div class="delete-card">
+        <h2 class="section-title">Informações da Locação</h2>
+        <dl class="info-list">
+            <dt>Nome do Cliente:</dt>
+            <dd>@Html.DisplayFor(model => model.Nome)</dd>
+
+            <dt>Veículo:</dt>
+            <dd>@Html.DisplayFor(model => model.Veiculo.Modelo)</dd>
+
+            <dt>Data de Retirada:</dt>
+            <dd>@Html.DisplayFor(model => model.DataRetirada)</dd>
+
+            <dt>Data de Devolução:</dt>
+            <dd>@Html.DisplayFor(model => model.DataDevolucao)</dd>
+        </dl>
+
+        <form asp-action="Delete" class="delete-form">
+            <input type="hidden" asp-for="RegistroId" />
+
+            <div class="btn-container">
+                <input type="submit" value="Excluir" class="btn-delete" />
+            </div>
+
+            <div class="btn-center">
+                <a asp-action="Index" class="btn-back">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+<style>
+    /* ======== GERAL ======== */
+    body {
+        background-color: #000;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .delete-section {
+        max-width: 700px;
+        margin: 60px auto;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+        text-align: center;
+    }
+
+    .page-title {
+        color: #FFD700;
+        font-size: 2.2rem;
+        text-transform: uppercase;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        color: #ccc;
+        margin-bottom: 30px;
+        font-size: 1rem;
+    }
+
+    .gold {
+        color: #FFD700;
+        font-weight: 600;
+    }
+
+    /* ======== CARD ======== */
+    .delete-card {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        padding: 25px;
+        text-align: left;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+    }
+
+    .section-title {
+        color: #FFD700;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .info-list {
+        margin-bottom: 25px;
+    }
+
+    dt {
+        color: #FFD700;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    dd {
+        color: #eee;
+        margin-left: 0;
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    /* ======== BOTÕES ======== */
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .btn-delete {
+        background: #ff4c4c;
+        color: #fff;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 0 15px rgba(255, 76, 76, 0.4);
+    }
+
+        .btn-delete:hover {
+            background: #ff0000;
+            transform: scale(1.05);
+        }
+
+    .btn-center {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .btn-back {
+        background: transparent;
+        border: 2px solid #FFD700;
+        color: #FFD700;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: 0.3s;
+        text-align: center; /* <-- garante centralização do texto */
+        display: flex; /* <-- centraliza o conteúdo */
+        align-items: center; /* <-- verticalmente centralizado */
+        justify-content: center; /* <-- horizontalmente centralizado */
+        min-width: 160px; /* garante largura consistente */
+    }
+
+        .btn-back:hover {
+            background: #FFD700;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+   
+
+    {
+        padding: 25px;
+    }
+
+    .btn-delete, .btn-back {
+        width: 100%;
+    }
+
+    }
+</style>

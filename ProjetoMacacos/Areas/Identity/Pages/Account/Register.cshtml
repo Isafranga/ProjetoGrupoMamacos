@@ -1,0 +1,212 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<div class="login-container">
+
+    <!-- LADO ESQUERDO (IMAGEM) -->
+    <div class="login-left">
+        <div class="login-image-placeholder">
+            <img src="/img/1.png" alt="Carro em destaque" class="imagem" width="500" height="450" />
+        </div>
+    </div>
+
+    <!-- LADO DIREITO (FORMULÁRIO) -->
+    <div class="login-right">
+        <div class="login-card">
+            <h1 class="text-center mb-3 text-white">@ViewData["Title"]</h1>
+
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <h2 class="text-muted text-center">Crie sua conta para começar</h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Input.Email">Email</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.Password">Senha</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.ConfirmPassword">Confirmar senha</label>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Cadastrar</button>
+
+                <div class="mt-3 text-center">
+                    <p><a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Já tem uma conta? Faça login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    /* ===== CONTAINER PRINCIPAL ===== */
+    .login-container {
+        display: flex;
+        height: 100vh;
+        background-color: #000;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* ===== LADO ESQUERDO ===== */
+    .login-left {
+        flex: 1;
+        background: linear-gradient(180deg, #111, #000);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        border-right: 2px solid #FFD700;
+    }
+
+    .login-image-placeholder {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        background: rgba(255, 215, 0, 0.05);
+        border-radius: 15px;
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.1);
+    }
+
+    .imagem {
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+        .imagem:hover {
+            transform: scale(1.05);
+        }
+
+    /* ===== LADO DIREITO ===== */
+    .login-right {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        background-color: #0a0a0a;
+    }
+
+    .login-card {
+        background-color: #111;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+        width: 100%;
+        max-width: 420px;
+        transition: all 0.3s ease;
+    }
+
+        .login-card:hover {
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.25);
+        }
+
+        .login-card h1 {
+            color: #FFD700;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .login-card h2 {
+            color: #bbb;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+    /* ===== INPUTS ===== */
+    .form-control {
+        background-color: black;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        color: #fff;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: #FFD700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            color: #fff;
+        }
+
+    label {
+        color: #FFD700;
+    }
+
+    /* ===== BOTÃO ===== */
+    .btn-primary {
+        background: linear-gradient(90deg, #FFD700, #ffea7a);
+        color: #000;
+        border: none !important;
+        border-radius: 25px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 12px;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+        .btn-primary:hover {
+            background: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+        }
+
+    /* ===== LINKS ===== */
+    .mt-3 a {
+        color: #FFD700;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+        .mt-3 a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px #FFD700;
+        }
+
+
+
+    {
+        flex-direction: column;
+    }
+
+    .login-left {
+        border-right: none;
+        border-bottom: 2px solid #FFD700;
+        padding-bottom: 20px;
+    }
+
+    .login-image-placeholder {
+        height: 250px;
+        width: 90%;
+    }
+
+    .login-card {
+        margin-top: 30px;
+    }
+
+    }
+</style>

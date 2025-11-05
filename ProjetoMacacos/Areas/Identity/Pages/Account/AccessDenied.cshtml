@@ -1,0 +1,67 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Acesso Negado";
+}
+
+<header class="access-denied-box">
+    <div class="icon">🚫</div>
+    <h1>@ViewData["Title"]</h1>
+    <p>Página permitida apenas para Administrador.</p>
+    <a href="/" class="btn-voltar">Voltar à Página Inicial</a>
+</header>
+
+<style>
+    body {
+        background-color: #000; /* Fundo preto */
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        margin-top: 100px;
+        color: #ff4d4d; /* Vermelho padrão para texto */
+    }
+
+    .access-denied-box {
+        background-color: #111;
+        display: inline-block;
+        padding: 50px 70px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        border: 2px solid #FFD700; /* Borda dourada */
+    }
+
+    .icon {
+        font-size: 4rem;
+        margin-bottom: 15px;
+        color: #ff4d4d;
+    }
+
+    h1 {
+        color: #ff4d4d; /* Vermelho */
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+    }
+
+    p {
+        color: #ff4d4d;
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+
+    .btn-voltar {
+        display: inline-block;
+        background-color: #FFD700;
+        color: #000;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+        .btn-voltar:hover {
+            background-color: #e6c200;
+            transform: scale(1.05);
+            color: #000;
+        }
+</style>

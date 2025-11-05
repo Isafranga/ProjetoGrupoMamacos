@@ -1,0 +1,176 @@
+﻿@model ProjetoMacacos.Models.Veiculo
+
+@{
+    ViewData["Title"] = "Cadastrar Veículo";
+}
+
+<section class="form-section">
+    <h1>Cadastrar Novo Veículo</h1>
+    <hr />
+
+    <div class="form-container">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="UrlFoto" class="form-label"></label>
+                <input type="file" asp-for="UrlFoto" name="UrlFoto" class="form-control" accept="image/*"/>
+                <span asp-validation-for="UrlFoto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Placa" class="form-label"></label>
+                <input asp-for="Placa" class="form-input" placeholder="Digite a placa do veículo" />
+                <span asp-validation-for="Placa" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Modelo" class="form-label"></label>
+                <input asp-for="Modelo" class="form-input" placeholder="Digite o modelo" />
+                <span asp-validation-for="Modelo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Marca" class="form-label"></label>
+                <input asp-for="Marca" class="form-input" placeholder="Digite a marca" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Ano" class="form-label"></label>
+                <input asp-for="Ano" class="form-input" placeholder="Ano de fabricação" />
+                <span asp-validation-for="Ano" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cor" class="form-label"></label>
+                <input asp-for="Cor" class="form-input" placeholder="Digite a cor" />
+                <span asp-validation-for="Cor" class="text-danger"></span>
+            </div>
+
+            <div class="btn-group">
+                <input type="submit" value="Cadastrar" class="btn-hero" />
+                <a asp-action="Index" class="btn-secondary">Voltar à Lista</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    /* ======== SEÇÃO DE CADASTRO ======== */
+    .form-section {
+        background-color: #000;
+        color: #fff;
+        padding: 60px 20px;
+        text-align: center;
+        min-height: 80vh;
+    }
+
+        .form-section h1 {
+            color: #FFD700;
+            font-weight: 800;
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            text-transform: uppercase;
+        }
+
+    .form-container {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        border-radius: 15px;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 40px 30px;
+        text-align: left;
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.1);
+    }
+
+    /* ======== CAMPOS DO FORMULÁRIO ======== */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #FFD700;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 1rem;
+        transition: 0.3s ease;
+        outline: none;
+    }
+
+        .form-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+            border: 1px solid #FFD700;
+        }
+
+    /* ======== BOTÕES ======== */
+    .btn-group {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .btn-hero {
+        display: inline-block;
+        background: #FFD700;
+        color: #000;
+        padding: 12px 35px;
+        border-radius: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        transition: 0.3s ease-in-out;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+
+        .btn-hero:hover {
+            background: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+    .btn-secondary {
+        display: inline-block;
+        background: transparent;
+        border: 1px solid #FFD700;
+        color: #FFD700;
+        padding: 12px 30px;
+        border-radius: 30px;
+        font-weight: 600;
+        text-decoration: none;
+        margin-left: 10px;
+        transition: 0.3s ease;
+    }
+
+        .btn-secondary:hover {
+            background: #FFD700;
+            color: #000;
+        }
+
+    /* ======== VALIDAÇÃO ======== */
+    .text-danger {
+        color: #ff5555 !important;
+        font-size: 0.9rem;
+    }
+</style>

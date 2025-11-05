@@ -1,0 +1,213 @@
+﻿@model ProjetoMacacos.Models.Clientes
+
+@{
+    ViewData["Title"] = "Cadastrar Cliente";
+}
+
+<section class="create-section">
+    <h1 class="page-title">Cadastrar Cliente</h1>
+    <p class="subtitle">Preencha os dados abaixo para registrar um novo cliente na HEINCAR.</p>
+
+    <div class="form-card">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label">Nome Completo</label>
+                <input asp-for="Nome" class="form-control" placeholder="Ex: João da Silva" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" placeholder="exemplo@email.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Telefone" class="control-label">Telefone</label>
+                <input asp-for="Telefone" class="form-control" placeholder="(11) 1234-5678" />
+                <span asp-validation-for="Telefone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Celular" class="control-label">Celular</label>
+                <input asp-for="Celular" class="form-control" placeholder="(11) 91234-5678" />
+                <span asp-validation-for="Celular" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CPF" class="control-label">CPF</label>
+                <input asp-for="CPF" class="form-control" placeholder="000.000.000-00" />
+                <span asp-validation-for="CPF" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DataNacimento" class="control-label">Data de Nascimento</label>
+                <input asp-for="DataNacimento" type="date" class="form-control" />
+                <span asp-validation-for="DataNacimento" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Endereço" class="control-label">Endereço</label>
+                <input asp-for="Endereço" class="form-control" placeholder="Rua Exemplo, 123" />
+                <span asp-validation-for="Endereço" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Bairro" class="control-label">Bairro</label>
+                <input asp-for="Bairro" class="form-control" placeholder="Centro" />
+                <span asp-validation-for="Bairro" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cidade" class="control-label">Cidade</label>
+                <input asp-for="Cidade" class="form-control" placeholder="São Paulo" />
+                <span asp-validation-for="Cidade" class="text-danger"></span>
+            </div>
+
+            <div class="button-group">
+                <input type="submit" value="Cadastrar" class="btn-submit" />
+                <a asp-action="Index" class="btn-back">Voltar à Lista</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    /* ======== GERAL ======== */
+    body {
+        background-color: #000;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .create-section {
+        max-width: 700px;
+        margin: 70px auto;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.1);
+    }
+
+    .page-title {
+        color: #FFD700;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #ccc;
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .form-card {
+        background: rgba(255, 255, 255, 0.07);
+        padding: 25px;
+        border-radius: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        color: #fff;
+        border-radius: 8px;
+        padding: 10px;
+        width: 100%;
+        transition: 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+            outline: none;
+        }
+
+    label {
+        color: #FFD700;
+        font-weight: 600;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .text-danger {
+        color: #ff4c4c;
+        font-size: 0.9rem;
+    }
+
+    /* ======== BOTÕES ======== */
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    .btn-submit {
+        background: #FFD700;
+        color: #000;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .btn-submit:hover {
+            background: #ffcc00;
+            transform: scale(1.05);
+        }
+
+    .btn-back {
+        background: transparent;
+        border: 1px solid #FFD700;
+        color: #FFD700;
+        padding: 12px 30px;
+        border-radius: 30px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+        .btn-back:hover {
+            background: #FFD700;
+            color: #000;
+        }
+
+    
+
+    {
+        padding: 25px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn-submit,
+    .btn-back {
+        width: 100%;
+        text-align: center;
+    }
+
+    }
+</style>

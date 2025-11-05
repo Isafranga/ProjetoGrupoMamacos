@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProjetoMacacos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68870a7d716cf56ed88f8b34c18e15720ea5ac95")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProjetoMacacos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProjetoMacacos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
