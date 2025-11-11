@@ -33,7 +33,7 @@ public class RegistrosController : Controller
     {
         if (veiculoId.HasValue)
         {
-            var veiculo = _context.Registros.FirstOrDefault(v => v.VeiculoId == veiculoId);
+            var veiculo = _context.Veiculos.FirstOrDefault(v => v.VeiculoId == veiculoId);
             ViewBag.VeiculoSelecionado = veiculo;
         }
 
